@@ -1,0 +1,14 @@
+*, x=0.493, y=0.432, frequency=1, skip=False, adjust=False
+    MainSummon
+    MainMobSkill, direction=right, attacks=2, repetitions=1
+    Walk, direction=left, duration=0.1
+    MainMobSkill, direction=left, attacks=2, repetitions=1
+*, x=0.493, y=0.096, frequency=1, skip=False, adjust=False
+    MainMobSkill, direction=left, attacks=2, repetitions=1
+    Adjust, x=0.493, y=0.096, max_steps=3
+    MainMobSkill, direction=right, attacks=2, repetitions=1
+*, x=0.493, y=0.240, frequency=1, skip=False, adjust=False
+    MainAreaSkill
+    MainMobSkill, direction=left, attacks=2, repetitions=1
+    SecondaryMobSkill
+    MainMobSkill, direction=right, attacks=2, repetitions=1

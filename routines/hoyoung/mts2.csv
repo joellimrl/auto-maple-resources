@@ -1,0 +1,20 @@
+*, x=0.208, y=0.409, frequency=1, skip=False, adjust=False
+    HoYoungFanHuman, direction=left, repetitions=1
+    HoYoungEarthChain, direction=right, repetitions=1
+*, x=0.422, y=0.409, frequency=1, skip=False, adjust=False
+    HoYoungMountainSpirit
+    HoYoungFanHuman, direction=right, repetitions=1
+*, x=0.714, y=0.409, frequency=1, skip=False, adjust=False
+    HoYoungConflagHeaven, followWithFaceRock=False, repetitions=1
+*, x=0.805, y=0.305, frequency=1, skip=False, adjust=False
+    HoYoungFanHuman, direction=right, repetitions=1
+    HoYoungBuchaeHeaven, direction=left, repetitions=1
+*, x=0.799, y=0.156, frequency=1, skip=False, adjust=False
+    HoYoungRockEarth, direction=left, repetitions=1
+*, x=0.558, y=0.234, frequency=1, skip=False, adjust=False
+    HoYoungFistVortex
+    HoYoungCudgelHuman, direction=left, repetitions=1
+*, x=0.305, y=0.156, frequency=1, skip=False, adjust=False
+    HoYoungFanHuman, direction=left, repetitions=1
+*, x=0.292, y=0.299, frequency=1, skip=False, adjust=False
+    HoYoungBuchaeHeaven, direction=left, repetitions=1

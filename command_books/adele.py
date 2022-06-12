@@ -12,47 +12,47 @@ class Key:
     # Movement
     JUMP = 'space'
     FLASH_JUMP = 'space'
-    IMPALE = '1'
-    RESONANCE = '2'
-    PLUMMET = 'r'
-    FEATHER_FLOAT = 'f'
-    HIGH_RISE = 'ctrl'
+    IMPALE = 'n'
+    RESONANCE = 'x'
+    TREAD = '7'
+    FEATHER_FLOAT = 'd'
+    # HIGH_RISE = 'ctrl'
 
     # Buffs
-    WEAVE_INFUSION = 'f1'
-    HERO_OF_THE_FLORA = 'f2'
-    SPEED_INFUSION = 'f3'
+    BOOSTER = 'f1'
+    FLORA_WARRIOR = 'f2'
+    # SPEED_INFUSION = 'f3'
     HOLY_SYMBOL = 'f4'
-    SHARP_EYE = 'f5'
-    COMBAT_ORDERS = 'f6'
-    ADVANCED_BLESSING = 'f7'
-    CONVERSION_OVERDRIVE = 'f8'
-    WEAPON_AURA = 'f9'
-    DIVINE_WRATH = 'end'
-    GRANDIS_GODDESS = 'page up'
-    LEGACY_RESTORATION = 'page down'
+    # SHARP_EYE = 'f5'
+    # COMBAT_ORDERS = 'f6'
+    # ADVANCED_BLESSING = 'f7'
+    # CONVERSION_OVERDRIVE = 'f8'
+    # WEAPON_AURA = 'f9'
+    WRATH_OF_GOD = 'k'
+    # GRANDIS_GODDESS = 'page up'
+    RESTORE = 'u'
 
     # Buffs Toggle
-    AETHER_FORGE = 'f10'
-    AETHERIAL_ARMS = 'f11'
+    CREATION = 'f9'
+    WONDER = 'f10'
 
     # Skills
-    CLEAVE = 'q'
-    HUNTING_DECREE = 'w'
-    RUIN = 'e'
-    STORM = 't'
-    NOBLE_SUMMONS = 'a'
-    AETHER_BLOOM = 's'
-    REIGN_OF_DESTRUCTION = 'd'
-    SHARDBREAKER = 'g'
-    MAGIC_DISPATCH = 'shift'
-    TRUE_NOBILITY = 'x'
-    GRAVE_PROCLAMATION = 'c'
-    BLADE_TORRENT = 'b'
-    INFINITY_BLADE = 'home'
-    LUCID_SOUL = '3'
-    ARACHNID = '4'
-    ERDA_SHOWER = 'h'
+    DIVIDE = 'c'
+    ORDER = 'v'
+    RUIN = 'j'
+    # STORM = 't'
+    GATHERING = 'o'
+    BLOSSOM = '5'
+    TERRITORY = 'f'
+    MARKER = 'h'
+    SHARD = 'b'
+    NOBILITY = '6'
+    GRAVE = 'g'
+    SQUALL = 't'
+    INFINITE = 'y'
+    # LUCID_SOUL = '3'
+    # ARACHNID = '4'
+    # ERDA_SHOWER = 'h'
 
 
 #########################
@@ -140,32 +140,36 @@ class Buff(Command):
         self.decent_buff_time = 0
 
     def main(self):
-        buffs = [Key.SPEED_INFUSION, Key.HOLY_SYMBOL, Key.SHARP_EYE, Key.COMBAT_ORDERS, Key.ADVANCED_BLESSING]
+        buffs = [
+            # Key.SPEED_INFUSION,
+            Key.HOLY_SYMBOL,
+            #  Key.SHARP_EYE, Key.COMBAT_ORDERS, Key.ADVANCED_BLESSING
+        ]
         now = time.time()
 
         if self.cd120_buff_time == 0 or now - self.cd120_buff_time > 120:
-	        press(Key.DIVINE_WRATH, 2)
-	        self.cd120_buff_time = now
+            press(Key.WRATH_OF_GOD, 2)
+            self.cd120_buff_time = now
         if self.cd180_buff_time == 0 or now - self.cd180_buff_time > 180:
-	        press(Key.WEAPON_AURA, 2)
-	        press(Key.LEGACY_RESTORATION, 2)
-	        self.cd180_buff_time = now
+            # press(Key.WEAPON_AURA, 2)
+            press(Key.RESTORE, 2)
+            self.cd180_buff_time = now
         if self.cd200_buff_time == 0 or now - self.cd200_buff_time > 200:
-	        press(Key.WEAVE_INFUSION, 2)
-	        press(Key.CONVERSION_OVERDRIVE, 2)
-	        self.cd200_buff_time = now
+            press(Key.BOOSTER, 2)
+            # press(Key.CONVERSION_OVERDRIVE, 2)
+            self.cd200_buff_time = now
         if self.cd240_buff_time == 0 or now - self.cd240_buff_time > 240:
-	        press(Key.GRANDIS_GODDESS, 2)
-	        self.cd240_buff_time = now
+            # press(Key.GRANDIS_GODDESS, 2)
+            self.cd240_buff_time = now
         if self.cd900_buff_time == 0 or now - self.cd900_buff_time > 900:
-	        press(Key.HERO_OF_THE_FLORA, 2)
-	        self.cd900_buff_time = now
+            press(Key.FLORA_WARRIOR, 2)
+            self.cd900_buff_time = now
         if self.decent_buff_time == 0 or now - self.decent_buff_time > settings.buff_cooldown:
-	        for key in buffs:
-		        press(key, 3, up_time=0.3)
-	        self.decent_buff_time = now		
+            for key in buffs:
+                press(key, 3, up_time=0.3)
+            self.decent_buff_time = now
 
-			
+
 class Resonance(Command):
     """
     Resonance in a given direction, jumping if specified. Adds the player's position
@@ -196,7 +200,8 @@ class Resonance(Command):
         press(Key.RESONANCE, num_presses)
         key_up(self.direction)
         if settings.record_layout:
-	        config.layout.add(*config.player_pos)
+            config.layout.add(*config.player_pos)
+
 
 class FlashJump(Command):
     """Performs a flash jump in the given direction."""
@@ -215,7 +220,8 @@ class FlashJump(Command):
             press(Key.FLASH_JUMP, 1)
         key_up(self.direction)
         time.sleep(0.5)
-			
+
+
 class Impale(Command):
     """
     Impale in a given direction, jumping if specified. Adds the player's position
@@ -246,7 +252,7 @@ class Impale(Command):
         press(Key.IMPALE, num_presses)
         key_up(self.direction)
         if settings.record_layout:
-	        config.layout.add(*config.player_pos)
+            config.layout.add(*config.player_pos)
 
 
 class Cleave(Command):
@@ -265,7 +271,7 @@ class Cleave(Command):
         if config.stage_fright and utils.bernoulli(0.7):
             time.sleep(utils.rand_float(0.1, 0.3))
         for _ in range(self.repetitions):
-            press(Key.CLEAVE, self.attacks, up_time=0.05)
+            press(Key.DIVIDE, self.attacks, up_time=0.05)
         key_up(self.direction)
         if self.attacks > 2:
             time.sleep(0.3)
@@ -277,25 +283,28 @@ class HuntingDecree(Command):
     """Uses 'Hunting Decree' once."""
 
     def main(self):
-        press(Key.HUNTING_DECREE, 1, up_time=0.05)
-		
+        press(Key.ORDER, 1, up_time=0.05)
+
+
 class NobleSummons(Command):
     """Uses 'Noble summons' once."""
 
     def main(self):
-        press(Key.NOBLE_SUMMONS, 1, up_time=0.05)
+        press(Key.GATHERING, 1, up_time=0.05)
+
 
 class AetherBloom(Command):
     """Uses 'Aether Bloom' once."""
 
     def main(self):
-        press(Key.AETHER_BLOOM, 1, up_time=0.05)	
+        press(Key.BLOSSOM, 1, up_time=0.05)
+
 
 class MagicDispatch(Command):
     """Uses 'Magic Dispatch' once."""
 
     def main(self):
-        press(Key.MAGIC_DISPATCH, 1, up_time=0.05)			
+        press(Key.SHARD, 1, up_time=0.05)
 
 
 class LucidSoul(Command):
@@ -319,7 +328,8 @@ class LucidSoul(Command):
                 press('left', 1, down_time=0.1, up_time=0.05)
             else:
                 press('right', 1, down_time=0.1, up_time=0.05)
-        press(Key.LUCID_SOUL, 3)
+        # press(Key.LUCID_SOUL, 3)
+
 
 class ReignOfDestruction(Command):
     """
@@ -342,7 +352,8 @@ class ReignOfDestruction(Command):
                 press('left', 1, down_time=0.1, up_time=0.05)
             else:
                 press('right', 1, down_time=0.1, up_time=0.05)
-        press(Key.REIGN_OF_DESTRUCTION, 3)
+        press(Key.TERRITORY, 3)
+
 
 class Shardbreaker(Command):
     """
@@ -365,7 +376,7 @@ class Shardbreaker(Command):
                 press('left', 1, down_time=0.1, up_time=0.05)
             else:
                 press('right', 1, down_time=0.1, up_time=0.05)
-        press(Key.SHARDBREAKER, 3)
+        press(Key.MARKER, 3)
 
 
 class Ruin(Command):
@@ -375,11 +386,11 @@ class Ruin(Command):
         press(Key.RUIN, 3)
 
 
-class Arachnid(Command):
-    """Uses 'True Arachnid Reflection' once."""
+# class Arachnid(Command):
+#     """Uses 'True Arachnid Reflection' once."""
 
-    def main(self):
-        press(Key.ARACHNID, 3)
+#     def main(self):
+#         press(Key.ARACHNID, 3)
 
 
 class HighRise(Command):
@@ -392,8 +403,9 @@ class HighRise(Command):
     def main(self):
         if self.jump:
             press(Key.JUMP, 1, down_time=0.1, up_time=0.15)
-        press(Key.HIGH_RISE, 2, up_time=0.05)
-		
+        # press(Key.HIGH_RISE, 2, up_time=0.05)
+
+
 class Plummet(Command):
     """Uses 'Plummet' once to attack downwards."""
 
@@ -404,7 +416,8 @@ class Plummet(Command):
     def main(self):
         if self.jump:
             press(Key.JUMP, 1, down_time=0.1, up_time=0.15)
-        press(Key.PLUMMET, 2, up_time=0.05)	
+        press(Key.TREAD, 2, up_time=0.05)
+
 
 class FeatherFloat(Command):
     """Jumps backwards using 'Feather Float' once."""
@@ -416,45 +429,46 @@ class FeatherFloat(Command):
     def main(self):
         if self.jump:
             press(Key.JUMP, 1, down_time=0.1, up_time=0.15)
-        press(Key.FEATHER_FLOAT, 2, up_time=0.05)		
+        press(Key.FEATHER_FLOAT, 2, up_time=0.05)
 
 
-class Storm(Command):
-    """Uses 'Storm' once."""
+# class Storm(Command):
+#     """Uses 'Storm' once."""
 
-    def main(self):
-        press(Key.STORM, 3)
+#     def main(self):
+#         press(Key.STORM, 3)
 
 
 class BladeTorrent(Command):
     """Uses 'Blade Torrent' once."""
 
     def main(self):
-        press(Key.BLADE_TORRENT, 2, down_time=0.1)
-		
+        press(Key.SQUALL, 2, down_time=0.1)
+
+
 class InfinityBlade(Command):
     """Uses 'Infinity Blade' once."""
 
     def main(self):
-        press(Key.INFINITY_BLADE, 2, down_time=0.1)
+        press(Key.INFINITE, 2, down_time=0.1)
 
-class ErdaShower(Command):
-    """Uses 'Erda Shower' once."""
 
-    def main(self):
-        press(Key.ERDA_SHOWER, 2, down_time=0.1)		
+# class ErdaShower(Command):
+#     """Uses 'Erda Shower' once."""
+
+#     def main(self):
+#         press(Key.ERDA_SHOWER, 2, down_time=0.1)
 
 
 class TrueNobility(Command):
     """Places a'True nobility' field on the ground once."""
 
     def main(self):
-        press(Key.TRUE_NOBILITY, 2)
+        press(Key.NOBILITY, 2)
 
 
 class GraveProclamation(Command):
     """Uses 'Grave proclamation' to mark an enemy once."""
 
     def main(self):
-        press(Key.GRAVE_PROCLAMATION, 2)
-		
+        press(Key.GRAVE, 2)

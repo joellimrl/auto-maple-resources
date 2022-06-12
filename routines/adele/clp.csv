@@ -56,7 +56,6 @@
     Plummet, jump=False
 *, x=0.770, y=0.357, frequency=1, skip=False, adjust=False
     NobleSummons
-    Storm
 *, x=0.690, y=0.357, frequency=1, skip=True, adjust=False
     Cleave, direction=left, attacks=1, repetitions=1
 *, x=0.550, y=0.357, frequency=1, skip=False, adjust=False
